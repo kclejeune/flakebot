@@ -1,0 +1,20 @@
+name: 'FlakeBot'
+description: 'bump flake.lock versions for nix projects'
+inputs:
+  recursive: # id of input
+    description: 'specify whether we should recursively update any flakes in this repository'
+    required: false
+    default: "false"
+  flakes:
+    description: 'individually specify flakes inputs to update'
+    required: false
+    default: ""
+outputs:
+runs:
+  using: 'composite'
+  steps:
+    - run: ${{ github.action_path }}/update.py --
+      shell: bash
+branding:
+  icon: 'arrow-up-circle'
+  color: 'green'
